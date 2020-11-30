@@ -1,0 +1,41 @@
+
+<header class="main-header">
+    <nav class="right-header-list">
+        
+
+    
+        <a *ngIf="!loggedIn"  class="item" routerLinkActive="active" (click)="setUser()" routerLink="/login">login</a>
+        <a *ngIf="loggedIn"  class="item exit" routerLinkActive="active"routerLink="/logout"  (click)="logout()">logout</a>
+        
+
+    
+        <a class="item" routerLinkActive="active"  routerLink="/signup">sign up</a>
+
+        <!-- <a *ngIf="loggedIn" class="item"routerLink="/messages"routerLinkActive="active" ><span><i class="far fa-envelope fa-2x" ></i></span> <span style=" padding: 2px 5px;
+        vertical-align: top;" class="badge badge-warning " >2</span></a>  -->
+        <a class="item" routerLinkActive="active"  routerLink="/game">play</a>
+
+    </nav>
+    
+    <nav class="left-header-list ">
+        <!-- <div *ngIf="!loggedIn">
+            <span style="font-size: larger;" class="item">שק לנזקק</span>
+            <a class="item" routerLinkActive="active"  routerLink="/favorite-locations">מידע נוסף</a>
+            <a class="item" routerLinkActive="active"  routerLink="/favorite-locations">לתרומה</a>
+        </div> -->
+      
+        <div *ngIf="loggedIn && user$ | async as user">
+            <span >{{user.firstName}} <span style="color: white;font-size: 25px;"> | </span> <i class="far fa-user fa-2x" ></i>  <span style="font-size: large;">   </span></span>
+        </div>
+       
+
+    
+    </nav>
+</header>
+    
+    <main>
+    
+    <router-outlet></router-outlet>
+
+    </main>
+    

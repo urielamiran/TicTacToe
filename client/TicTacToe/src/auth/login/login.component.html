@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <div class="item">
+      <!-- <div class="h-wrapper" >
+        <h2 >כניסה</h2>
+      </div> -->
+      <form  #form="ngForm">
+
+      <div class="h-wrapper" >
+         <input class="w-90" type="email" ngModel name="email" placeholder="email"> 
+      </div>
+
+      <div class="h-wrapper">
+        <input type="password" ngModel name="password" placeholder="password"  class="w-90">
+     </div>
+
+      <div class="h-wrapper " >
+          <button class="type-button w-40" (click)="login(form)" >login</button>
+      </div>
+
+      <!-- <div class="h-wrapper" style="margin-top: 1rem;display: flex; justify-content: space-around;">
+         <p >צור חשבון</p> <p >שכחתי סיסמה</p>
+      </div> -->
+
+   </form>
+    </div>
+</div>
+
+<!-- <button class="btn btn-dark" (click)="send()">user</button> -->

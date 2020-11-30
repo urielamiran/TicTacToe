@@ -1,0 +1,28 @@
+<div class="wrapper">
+    <div class="item">
+
+      <form  #form="ngForm">
+
+      <div class="h-wrapper" >
+          <input type="text" ngModel name="firstName" placeholder="first name"  class="w-40"><input class="w-40" type="text" ngModel name="lastName" placeholder="last name">
+      </div>
+
+     <div class="h-wrapper">
+        <input type="email" ngModel name="email" placeholder="email" class="w-90">
+     </div>
+
+
+     <div class="h-wrapper">
+        <input type="password" ngModel name="password" placeholder="password" class="w-90"> 
+     </div>
+
+      <input type="text" name="type" ngModel [hidden]="true"> 
+
+      <div class="h-wrapper " style="display: flex;justify-content: space-evenly;">
+         <button class="type-button w-40" (click)="register(form)">sign up</button> 
+      </div>
+
+   </form>
+    </div>
+</div>
+

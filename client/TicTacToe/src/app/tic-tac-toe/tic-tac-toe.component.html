@@ -1,0 +1,43 @@
+<div class="w-100 h-20" ></div>
+
+<div class="w-40 mx-auto h-40" >
+    <table class="table table-bordered w-100 h-100" >
+        <tbody >
+          <tr >
+              <td [ngClass]="setTdStyle(0)" (click)="setCell(0)"><i [ngClass]="setClassStyle(board[0])"></i></td>
+              <td [ngClass]="setTdStyle(1)" (click)="setCell(1)"><i [ngClass]="setClassStyle(board[1])"></i></td>
+              <td [ngClass]="setTdStyle(2)" (click)="setCell(2)"><i [ngClass]="setClassStyle(board[2])"></i></td>
+          </tr>
+          <tr>
+              <td [ngClass]="setTdStyle(3)" (click)="setCell(3)"><i [ngClass]="setClassStyle(board[3])"></i></td>
+              <td [ngClass]="setTdStyle(4)" (click)="setCell(4)"><i [ngClass]="setClassStyle(board[4])"></i></td>
+              <td [ngClass]="setTdStyle(5)" (click)="setCell(5)"><i [ngClass]="setClassStyle(board[5])"></i></td>
+          </tr>
+          <tr>
+              <td [ngClass]="setTdStyle(6)" (click)="setCell(6)"><i [ngClass]="setClassStyle(board[6])"></i></td>
+              <td [ngClass]="setTdStyle(7)" (click)="setCell(7)"><i [ngClass]="setClassStyle(board[7])"></i></td>
+              <td [ngClass]="setTdStyle(8)" (click)="setCell(8)"><i [ngClass]="setClassStyle(board[8])"></i></td>
+          </tr>
+        </tbody>
+    </table>
+</div>
+<div class="w-40 mx-auto h-10  " style="display: flex; justify-content:space-between;">
+    <div class="pt-2 color">
+       <label *ngIf="username$ | async as userName; else you" class="bg-dark p-1" >{{userName.firstName}} ( {{myVictories}} )</label>
+       <ng-template #you ><label class="bg-dark p-1">You ({{myVictories}})</label></ng-template>
+    </div>
+    <div class="pt-2 color">
+        <label class="bg-dark p-1">Tie ( {{tie}} )</label>
+    </div>
+    <div class="pt-2 color">
+        <label class="bg-dark p-1">{{opponentName != null ? opponentName : 'Opponent'}} ( {{opponentVictories}} )</label>
+    </div>
+</div>
+
+<div class="w-40 mx-auto h-10" >
+    <div class="w-40 mx-auto pt-3">
+        <button class="btn btn-primary w-100" style="margin: auto;" (click)="startGame()">Start new game</button>
+    </div>
+</div>
+
+
