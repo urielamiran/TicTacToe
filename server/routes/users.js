@@ -53,7 +53,7 @@ router.post('/register',
               password: hashedPassword
           });
           debug(`New user registered. Name: ${req.body.firstName}, ${req.body.lastName} ,email: ${req.body.email}`);
-          res.sendStatus(200);
+          res.send({username: req.body.firstName});
       } catch (error) {
         console.log(error)
           debug(`Error: ${error}`);

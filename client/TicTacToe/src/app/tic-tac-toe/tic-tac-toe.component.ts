@@ -45,11 +45,6 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
   constructor(private socketService: SocketioService, private _snackBar: MatSnackBar, private authService: AuthService) { 
     this.socketService.setupSocketConnection();
     this.username$ = this.authService.getUser()
-    // this.authService.getU().subscribe(user=>{
-    //   if(user) {
-    //     this.userName = user.firstName
-    //   }
-    // })
 
     this.socketService.getSocket().on('turn', (index)=>{     
       this.board[index] = this.ticTacToeSymbol == 'X' ? 'O' : 'X'
@@ -60,9 +55,10 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
       if(data.start) {
         this.ticTacToeSymbol = 'X'
         this.continue = true
-       
+        this.openSnackBar('you are first to play', '')
       }else{
         this.ticTacToeSymbol = 'O'
+        this.openSnackBar('wait for your opponent ro begin', '')
       }
       this.opponentName = data.opponentName
     })
@@ -72,10 +68,6 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
       this.opponentVictories++
       this.zone = zone
     })
-  }
-
-  getOpponentSymbol() {
-    this.ticTacToeSymbol == 'X' ? 'O' : 'X';
   }
 
   ngOnInit(): void {
@@ -131,7 +123,7 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
         && this.board[this.winZones[index][2]] == this.ticTacToeSymbol) {
           this.zone = this.winZones[index]
           this.myVictories++
-          this.openSnackBar('You win!!!')
+          this.openSnackBar('You win!!!', 'Play again')
           this.continue = false
           this.socketService.getSocket().emit('endGame', this.winZones[index])
           return
@@ -141,7 +133,7 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
 
     if(this.board.filter(item => item != null).length == 9) {
       this.tie++
-      this.openSnackBar('Tie')
+      this.openSnackBar('Tie','Play again')
     } 
   }
 
@@ -152,8 +144,8 @@ export class TicTacToeComponent implements OnInit, CanComponentDeactivate {
     return 'btn btn-dark'
   }
 
-  private openSnackBar(message: string) {
-    this._snackBar.open(message, 'Play again', {
+  private openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
       duration: 3000,
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
